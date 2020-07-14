@@ -1,26 +1,54 @@
 # Envirowear-CPS
 A Cyber Physical System "Envirowear": Temperature control wear
 
-Synopsis:
-Greenhouse Climate Control system facilitates the growth of plants in a controlled environment. The system monitors internal conditions like soil humidity, light, temperature and humidity, and CO2 concentration in a greenhouse and alters these parameters to provide an optimal environment for plant growth.
+Synopsis 
+Exposure to very cold and hot temperatures could be dangerous to health. Inconveniences such as heat stroke, heat rash, frostbite, hypothermia could occur. Some of these conditions, if left unchecked, may led to unfortunate deaths. What if all the above problems can be avoided by regulating the temperature of your wear?
+We propose one such system “Envirowear” which allows the user to control and monitor the body temperature depending on the environmental conditions. There are 6 temperature sensors (2 legs, 2 sholder,1 chest and 1 back) which provide continuous measures of temperature in varies parts of body. Each temperature input is compared with the desired temperature set by the user. If they vary, the controller will set the actuators to heat or cool the body, until the desired temperature of user is not obtained. Ultimately, our goal to achieve a body suit that is easy to wear, comfortable, and provides simple and adequate controls that allow for any user to utilize it to their needs. The wear’s functionalities can be used to prevent the unfortunate condition that are caused by heat stroke, hypothermia, and other thermally induced maladies.
 
-Description:
-Plant growth is dependent on many parameters like soil humidity, light, temperature and humidity, and CO2. Its growth can be optimized by providing an optimal environment. The Greenhouse Climate Control system monitors and collects data on each parameter using various sensors. The collected data is then analyzed in real-time and the greenhouse's environmental condition is altered accordingly using actuators.
+CPS Description
+The system satisfies four characteristics of CPS:
+Reactive Computation: The system performs reactive computation by constantly responding to its environment and adjusting itself based on the readings it receives. The adjustments are based on the desired temperature inputs from the user. Several sequences of inputs and outputs can be described with this system.   
+Concurrency: Computations are executed concurrently as each controller is monitoring and adjusting itself independently from other controllers.  Different desired temperature inputs can be set for each body section. As such, each controller will be focusing on its respective body section. 
+Feedback Control of the Physical World: The culmination of the features above facilitates an accurate simulation of a feedback loop with the physical world. Sensor readings are analyzed at a constant rate within each controller. Each controller is independently reacting to the readings according to their temperature settings. 
 
-The system is a CPS because
-1.	Reactive: The system continuously interacts with the environments by taking inputs via sensors and altering the climate conditions in real time.
-2.	Concurrent: The system collects the sensor's data for all parameters that are processed concurrently, and multiple components alter the greenhouse climatic conditions in parallel.
-3.	Feedback control: The system interacts with the internal greenhouse environment via sensors and changes the climatic conditions via actuators. There is a continuous feedback loop of changing environmental conditions based on data received from sensors.
-4.	Real Time computation: The collected data from sensors is analyzed in real-time and the environmental conditions of greenhouse is altered accordingly in real time.
+Real-Time Computation: The use of sensors allows this system to function in real-time. They detect the shifts in temperature and tell the controllers to adjust the climate back to the desired settings. If any dangerous temperatures are detected, the real-time capability of the system provides the means to ensure the user is kept safe by immediately reverting to the system defaults.  
 
-Programming languages and software frameworks:
-Python/Java.
-
+Technical Details
+A standard set-up for this project would include an IDE compatible with Java 8+ (Eclipse). Tests would be developed and executed using popular testing frameworks compatible with Java such as JUnit. Astah will be used for UML and state diagrams. Draw.io will be used to draw SRC diagrams.
 
 Tests/Experiments:
-We will be using a real time data available at IEEE website (ROSESGREENHDB).
-We will use this data to simulate the input parameters for The Greenhouse Climate Control system. Each row in the data set provides soil humidity, light, temperature and humidity, and CO2 for each round of computation.
+A set of tests that could be designed for this system are split into two categories:
+1.	User-provided Inputs a.
+a)	Positive Tests:
+i.	Valid temperatures (i.e. integer values) accepted 
+ii.	System allows all components to receive an input from the user  
+b)	Negative Tests 
+i.	Invalid inputs for temperatures (e.g. non-numerical values) are rejected 
+ii.	Unsafe temperatures (e.g. will not allow users to go too low or high)
+iii.	Not providing any inputs for desired temperatures will tell the system to use a default setting
+2.	Individual Component Inputs 
+a)	Positive Tests 
+i.	Stores input from user and sensors in order to perform computations 
+ii.	Correct calculations being performed to determine differential between sensor readings and desired temperatures 
+iii.	Correct outputs being generated in response to the differential 
+1.	 Computations indicate positive differential: cool down the wearer 
+2.	Computations indicate negative differential: heat the wearer 
+iv.	Correct states are observed in response to input 
+b)	Negative Tests 
+i.	Components will not crash or fault in the chance a sensor fails (i.e. sensor sends “faulty” input in the form of null temperatures or non-numerical data) 
+ii.	Emergency scenarios (i.e. temperature readings outside of normal bounds) will trigger the appropriate recovery method.
 
-Risks:
-1.	The team members must have basic domain knowledge about Greenhouse agriculture, effects of climate parameters on plant growth.
-2.	The team members must be proficient in Python/Java.
+Risk Evaluation
+
+•	Hardware Risks
+•	Physical sensors being unable to account for differences between external temperatures and temperatures inside of the clothing.
+•	Physical sensor quality being ineffective for the needs of the project (i.e. not proving input quick enough or accurately enough) 
+•	Controllers sending their adjustment inputs to other controllers (i.e. causing incorrect adjustments to temperature) 
+
+•	Safety Risks 
+•	Circuitry frying, causing the system to fail and no longer make adjustments 
+•	Wearer being injured if electronics in the clothing experience a catastrophic failure 
+
+
+
+
