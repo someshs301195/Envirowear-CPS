@@ -34,20 +34,28 @@ Tests/Experiments:
 A set of tests that could be designed for this system are split into two categories:
 1.	User-provided Inputs a.
   a)	Positive Tests:
+  
       i.	Valid temperatures (i.e. integer values) accepted 
+      
       ii.	The system allows all components to receive an input from the user  
+      
   b)	Negative Tests:
-      i.	Invalid inputs for temperatures (e.g. non-numerical values) are rejected 
+  
+      i.	Invalid inputs for temperatures (e.g. non-numerical values) are rejected
+      
       ii.	Unsafe temperatures (e.g. will not allow users to go too low or high)
+      
       iii.	Not providing any inputs for desired temperatures will tell the system to use a default setting
 
 2.	Individual Component Inputs 
   a)	Positive Tests 
+  
       i.	Stores input from users and sensors to perform computations ii.	Correct calculations being performed to determine differential between sensor readings and 
           desired temperatures iii.	Correct outputs being generated in response to the differential 
           1.	 Computations indicate positive differential: cool down the wearer 
           2.	Computations indicate negative differential: heat the wearer iv.	Correct states are observed in response to input 
   b)	Negative Tests 
+  
       i.	Components will not crash or fault in the chance a sensor fails (i.e. sensor sends “faulty” input in the form of null temperatures or non-numerical data) 
       ii.	Emergency scenarios (i.e. temperature readings outside of normal bounds) will trigger the appropriate recovery method.
 
